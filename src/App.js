@@ -1,25 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  RecoilRoot,
+  atom,
+  selector,
+  useRecoilState,
+  useRecoilValue,
+} from 'recoil'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import FamilyTree from './FamilyTree'
+
+const familyState = atom({
+  key: 'familyState', // unique ID (with respect to other atoms/selectors)
+  default: {grandParent: 'Ron',
+            parent: 'Sal',
+            child: 'Dave',
+            grandChild: 'Micky'
+}, // default value (aka initial value)
+});
+
+const childAgeState = atom({
+  key: 'childAgeState', // unique ID (with respect to other atoms/selectors)
+  default: 0, // default value (aka initial value)
+});
+
+export default function App(){    
+    return(
+      <RecoilRoot>
+        <div className="container">
+        <FamilyTree/>
+        </div>
+      </RecoilRoot>
+    )
 }
-
-export default App;
