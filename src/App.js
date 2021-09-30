@@ -2,33 +2,34 @@ import './App.css';
 import {
   RecoilRoot,
   atom,
-  selector,
-  useRecoilState,
-  useRecoilValue,
 } from 'recoil'
 
 import FamilyTree from './FamilyTree'
 
 const familyState = atom({
-  key: 'familyState', // unique ID (with respect to other atoms/selectors)
-  default: {grandParent: 'Ron',
-            parent: 'Sal',
-            child: 'Dave',
-            grandChild: 'Micky'
-}, // default value (aka initial value)
-});
+  key: 'familyState', //unique id
+  default: {
+    grandParent: 'Ron',
+    parent: 'Sal',
+    child: 'Dave',
+    grandchild: 'Micky'
+  }
+})
+
 
 const childAgeState = atom({
-  key: 'childAgeState', // unique ID (with respect to other atoms/selectors)
-  default: 0, // default value (aka initial value)
-});
+  key: 'childAgeState',
+  default: 0,
+})
 
-export default function App(){    
-    return(
-      <RecoilRoot>
-        <div className="container">
-        <FamilyTree/>
-        </div>
-      </RecoilRoot>
-    )
+export default function App() {
+  return (
+    <RecoilRoot>
+      <div className="container">
+        <FamilyTree />
+      </div>
+    </RecoilRoot>
+
+
+  )
 }

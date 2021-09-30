@@ -1,9 +1,10 @@
 import Grandparent from './family-tree/Grandparent'
 import { useState } from 'react'
 
-export default function App(props) {
+export default function FamilyTree(props) {
 
     const [grandChildName, setGrandchildName] = useState('Frank')
+    
     return (
         <>
             <h1>My Family Tree</h1>

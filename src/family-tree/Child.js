@@ -2,38 +2,43 @@ import React from 'react'
 import Grandchild from './Grandchild'
 import {
     atom,
-    useRecoilValue,
-    useRecoilState
-  } from 'recoil';
+    useRecoilValue, // one way props
+    useRecoilState, // allows you to change/update state
+} from 'recoil'
 
-  const familyNames = atom({
+//setup atoms
+
+const familyNames = atom({
     key: 'familyState',
-    default: 'Name unknown',
-  });
-  const childAge = atom({
+    default: 'Name unknown'
+})
+
+const childAge = atom({
     key: 'childAgeState',
-    default: 0,
-  });
+    default: 10,
+})
 
-export default function App(props){
+export default function Child(props) {
 
-    const name = useRecoilValue(familyNames);
-    const [age, setAge] = useRecoilState(childAge);
-    const addYear = ()=>{
-        setAge(age+1)
+    const names = useRecoilValue(familyNames);
+    const [age, setAge] = useRecoilState(childAge)
+
+    const minusYear = () => {
+        setAge(age - 1)
     }
-    const minusYear = ()=>{
-        setAge(age-1)
+    const plusYear = () => {
+        setAge(age + 1)
     }
 
-    return(
+    return (
         <>
-        <h2>Child: {name.child} aged {age} years old.</h2>
-        <div>
-        <button onClick={minusYear} className="minus">- year</button>
-        <button onClick={addYear} className="plus">+ year</button>
-        </div>
-        <Grandchild grandChildName={props.grandChildName}/>
+            <h2>Child: {names.child}  aged {age} years old.</h2>
+            <div>
+
+                <button onClick={minusYear} className="minus"> - year</button>
+                <button onClick={plusYear} className="plus"> + year</button>
+            </div>
+            <Grandchild grandChildName={props.grandChildName} />
         </>
     )
 }

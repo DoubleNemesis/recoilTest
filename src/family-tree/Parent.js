@@ -9,7 +9,7 @@ import {
     default: 'Name unknown',
   });
 
-export default function App(props){
+export default function Parent(props){
 
     const name = useRecoilValue(familyNames);
     return(
